@@ -31,6 +31,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'minitest-around', '~> 0.5.0'
   spec.add_development_dependency 'minitest-focus'
   spec.add_development_dependency 'rake', '~> 13.0.1'
+  spec.add_development_dependency 'rspec', '~> 3.9.0'
   spec.add_development_dependency 'rubocop', '~> 0.88.0'
   spec.add_development_dependency 'timecop', '~> 0.9.1'
   spec.add_development_dependency 'webmock', '~> 3.8.3'
