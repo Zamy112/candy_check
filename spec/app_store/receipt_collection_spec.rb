@@ -19,7 +19,7 @@ describe CandyCheck::AppStore::ReceiptCollection do
     end
 
     it 'is expired' do
-      subject.expired?.must_be_true
+      _(subject.expired?).must_be_true
     end
 
     it 'is not a trial' do
@@ -34,12 +34,12 @@ describe CandyCheck::AppStore::ReceiptCollection do
 
     it 'has a last expires date' do
       expected = DateTime.new(2015, 4, 15, 12, 52, 40)
-      subject.expires_at.must_equal expected
+      _(subject.expires_at).must_equal expected
     end
 
     it 'is expired? at same pointin time' do
       Timecop.freeze(Time.utc(2015, 4, 15, 12, 52, 40)) do
-        subject.expired?.must_be_true
+        _(subject.expired?).must_be_true
       end
     end
   end
@@ -61,7 +61,7 @@ describe CandyCheck::AppStore::ReceiptCollection do
 
     it 'the expires date is the latest one in time' do
       expected = DateTime.new(2015, 4, 15, 12, 52, 40)
-      subject.expires_at.must_equal expected
+      _(subject.expires_at).must_equal expected
     end
 
   end
@@ -87,11 +87,11 @@ describe CandyCheck::AppStore::ReceiptCollection do
     end
 
     it 'it is a trial' do
-      subject.trial?.must_be_true
+      _(subject.trial?).must_be_true
     end
 
     it 'expires in two days' do
-      subject.overdue_days.must_equal(-2)
+      _(subject.overdue_days).must_equal(-2)
     end
   end
 

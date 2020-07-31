@@ -16,32 +16,32 @@ describe CandyCheck::PlayStore::Acknowledger do
         result = subject.acknowledge_product_purchase(package_name: package_name, product_id: product_id, token: token)
 
         result.must_be_instance_of CandyCheck::PlayStore::ProductAcknowledgements::Response
-        result.acknowledged?.must_be_true
+        (result.acknowledged?).must_be_true
         result.error.must_be_nil
       end
     end
     it 'when already acknowledged' do
-      error_body = '{\n  \'error\': {\n    \'code\': 400,\n    \'message\': \'The purchase is not in a valid state to perform the desired operation.\',\n    \'errors\': [\n      {\n        \'message\': \'The purchase is not in a valid state to perform the desired operation.\',\n        \'domain\': \'androidpublisher\',\n        \'reason\': \'invalidPurchaseState\',\n        \'location\': \'token\',\n        \'locationType\': \'parameter\'\n      }\n    ]\n  }\n}\n'
+      error_body = "{\n  \"error\": {\n    \"code\": 400,\n    \"message\": \"The purchase is not in a valid state to perform the desired operation.\",\n    \"errors\": [\n      {\n        \"message\": \"The purchase is not in a valid state to perform the desired operation.\",\n        \"domain\": \"androidpublisher\",\n        \"reason\": \"invalidPurchaseState\",\n        \"location\": \"token\",\n        \"locationType\": \"parameter\"\n      }\n    ]\n  }\n}\n"
 
       VCR.use_cassette('play_store/product_acknowledgements/already_acknowledged') do
         result = subject.acknowledge_product_purchase(package_name: package_name, product_id: product_id, token: token)
 
         result.must_be_instance_of CandyCheck::PlayStore::ProductAcknowledgements::Response
         result.acknowledged?.must_be_false
-        result.error[:body].must_equal(error_body)
-        result.error[:status_code].must_equal(400)
+        _(result.error[:body]).must_equal(error_body)
+        _(result.error[:status_code]).must_equal(400)
       end
     end
     it 'when it has been refunded' do
-      error_body = '{\n  \'error\': {\n    \'code\': 400,\n    \'message\': \'The product purchase is not owned by the user.\',\n    \'errors\': [\n      {\n        \'message\': \'The product purchase is not owned by the user.\',\n        \'domain\': \'androidpublisher\',\n        \'reason\': \'productNotOwnedByUser\'\n      }\n    ]\n  }\n}\n'
+      error_body = "{\n  \"error\": {\n    \"code\": 400,\n    \"message\": \"The product purchase is not owned by the user.\",\n    \"errors\": [\n      {\n        \"message\": \"The product purchase is not owned by the user.\",\n        \"domain\": \"androidpublisher\",\n        \"reason\": \"productNotOwnedByUser\"\n      }\n    ]\n  }\n}\n"
 
       VCR.use_cassette('play_store/product_acknowledgements/refunded') do
         result = subject.acknowledge_product_purchase(package_name: package_name, product_id: product_id, token: token)
 
         result.must_be_instance_of CandyCheck::PlayStore::ProductAcknowledgements::Response
         result.acknowledged?.must_be_false
-        result.error[:body].must_equal(error_body)
-        result.error[:status_code].must_equal(400)
+        _(result.error[:body]).must_equal(error_body)
+        _(result.error[:status_code]).must_equal(400)
       end
     end
   end

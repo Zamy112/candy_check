@@ -37,6 +37,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'webmock', '~> 3.8.3'
   spec.add_development_dependency 'vcr'
   spec.add_development_dependency 'pry'
+  spec.add_development_dependency 'pry-byebug', '~> 3.9.0'
   spec.add_development_dependency 'awesome_print'
   spec.add_development_dependency 'guard'
   spec.add_development_dependency 'guard-minitest'

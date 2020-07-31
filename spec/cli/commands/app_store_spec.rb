@@ -22,8 +22,8 @@ describe CandyCheck::CLI::Commands::AppStore do
 
   describe 'default' do
     it 'uses the receipt and the options' do
-      @verifier.config.environment.must_equal :sandbox
-      @verifier.arguments.must_equal [receipt, nil]
+      _(@verifier.config.environment).must_equal :sandbox
+      _(@verifier.arguments).must_equal [receipt, nil]
       out.must_be 'Hash:', result: :stubbed
     end
   end
@@ -37,8 +37,8 @@ describe CandyCheck::CLI::Commands::AppStore do
     end
 
     it 'uses the secret for verification' do
-      @verifier.config.environment.must_equal :production
-      @verifier.arguments.must_equal [receipt, 'notasecret']
+      _(@verifier.config.environment).must_equal :production
+      _(@verifier.arguments).must_equal [receipt, 'notasecret']
       out.must_be 'Hash:', result: :stubbed
     end
   end

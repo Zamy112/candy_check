@@ -17,19 +17,19 @@ describe CandyCheck::PlayStore::SubscriptionPurchases::SubscriptionPurchase do
     end
 
     it 'is expired?' do
-      subject.expired?.must_be_true
+      _(subject.expired?).must_be_true
     end
 
     it 'is canceled by user' do
-      subject.canceled_by_user?.must_be_true
+      _(subject.canceled_by_user?).must_be_true
     end
 
     it 'returns the payment_state' do
-      subject.payment_state.must_equal 1
+      _(subject.payment_state).must_equal 1
     end
 
     it 'considers a payment as valid' do
-      subject.payment_received?.must_be_true
+      _(subject.payment_received?).must_be_true
     end
 
     it 'checks that auto renewal status is false' do
@@ -37,30 +37,30 @@ describe CandyCheck::PlayStore::SubscriptionPurchases::SubscriptionPurchase do
     end
 
     it 'returns the developer_payload' do
-      subject.developer_payload.must_equal \
+      _(subject.developer_payload).must_equal \
         'payload that gets stored and returned'
     end
 
     it 'returns the kind' do
-      subject.kind.must_equal 'androidpublisher#subscriptionPurchase'
+      _(subject.kind).must_equal 'androidpublisher#subscriptionPurchase'
     end
 
     it 'returns the start_time_millis' do
-      subject.start_time_millis.must_equal 145_954_011_324_4
+      _(subject.start_time_millis).must_equal 145_954_011_324_4
     end
 
     it 'returns the expiry_time_millis' do
-      subject.expiry_time_millis.must_equal 146_213_208_861_0
+      _(subject.expiry_time_millis).must_equal 146_213_208_861_0
     end
 
     it 'returns the starts_at' do
       expected = DateTime.new(2016, 4, 1, 19, 48, 33)
-      subject.starts_at.must_equal expected
+      _(subject.starts_at).must_equal expected
     end
 
     it 'returns the expires_at' do
       expected = DateTime.new(2016, 5, 1, 19, 48, 8)
-      subject.expires_at.must_equal expected
+      _(subject.expires_at).must_equal expected
     end
   end
 
@@ -83,7 +83,7 @@ describe CandyCheck::PlayStore::SubscriptionPurchases::SubscriptionPurchase do
     end
 
     it 'is two days left until it is overdue' do
-      subject.overdue_days.must_equal(-2)
+      _(subject.overdue_days).must_equal(-2)
     end
   end
 
@@ -101,11 +101,11 @@ describe CandyCheck::PlayStore::SubscriptionPurchases::SubscriptionPurchase do
     end
 
     it 'is expired?' do
-      subject.expired?.must_be_true
+      _(subject.expired?).must_be_true
     end
 
     it 'is payment_failed?' do
-      subject.payment_failed?.must_be_true
+      _(subject.payment_failed?).must_be_true
     end
   end
 
@@ -150,16 +150,16 @@ describe CandyCheck::PlayStore::SubscriptionPurchases::SubscriptionPurchase do
       end
 
       it 'is canceled?' do
-        subject.canceled_by_user?.must_be_true
+        _(subject.canceled_by_user?).must_be_true
       end
 
       it 'returns the user_cancellation_time_millis' do
-        subject.user_cancellation_time_millis.must_equal 1_461_872_888_000
+        _(subject.user_cancellation_time_millis).must_equal 1_461_872_888_000
       end
 
       it 'returns the starts_at' do
         expected = DateTime.new(2016, 4, 28, 19, 48, 8)
-        subject.canceled_at.must_equal expected
+        _(subject.canceled_at).must_equal expected
       end
     end
   end
@@ -178,11 +178,11 @@ describe CandyCheck::PlayStore::SubscriptionPurchases::SubscriptionPurchase do
     end
 
     it 'is expired?' do
-      subject.expired?.must_be_true
+      _(subject.expired?).must_be_true
     end
 
     it 'is payment_pending?' do
-      subject.payment_pending?.must_be_true
+      _(subject.payment_pending?).must_be_true
     end
   end
 
@@ -202,11 +202,11 @@ describe CandyCheck::PlayStore::SubscriptionPurchases::SubscriptionPurchase do
     end
 
     it 'is trial?' do
-      subject.trial?.must_be_true
+      _(subject.trial?).must_be_true
     end
 
     it 'returns the price_currency_code' do
-      subject.price_currency_code.must_equal 'SOMECODE'
+      _(subject.price_currency_code).must_equal 'SOMECODE'
     end
   end
 
@@ -230,7 +230,7 @@ describe CandyCheck::PlayStore::SubscriptionPurchases::SubscriptionPurchase do
 
     def initialize(hash)
       FIELDS.each do |key|
-        self.public_send('#{key}=', hash[key])
+        self.public_send("#{key}=", hash[key])
       end
     end
   end
