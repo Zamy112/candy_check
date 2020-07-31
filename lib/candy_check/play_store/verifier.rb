@@ -36,7 +36,7 @@ module CandyCheck
           package_name: package_name,
           subscription_id: subscription_id,
           token: token,
-          authorization: @authorization,
+          authorization: @authorization
         )
         verifier.call!
       end
