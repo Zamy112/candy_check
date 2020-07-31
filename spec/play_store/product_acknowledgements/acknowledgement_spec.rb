@@ -21,9 +21,9 @@ describe CandyCheck::PlayStore::ProductAcknowledgements::Acknowledgement do
       VCR.use_cassette('play_store/product_acknowledgements/acknowledged') do
         result = subject.call!
 
-        result.must_be_instance_of CandyCheck::PlayStore::ProductAcknowledgements::Response
+        _(result).must_be_instance_of CandyCheck::PlayStore::ProductAcknowledgements::Response
         _(result.acknowledged?).must_be_true
-        result.error.must_be_nil
+        _(result.error).must_be_nil
       end
     end
     it 'when already acknowledged' do
@@ -32,8 +32,8 @@ describe CandyCheck::PlayStore::ProductAcknowledgements::Acknowledgement do
       VCR.use_cassette('play_store/product_acknowledgements/already_acknowledged') do
         result = subject.call!
 
-        result.must_be_instance_of CandyCheck::PlayStore::ProductAcknowledgements::Response
-        result.acknowledged?.must_be_false
+        _(result).must_be_instance_of CandyCheck::PlayStore::ProductAcknowledgements::Response
+        _(result.acknowledged?).must_be_false
         _(result.error[:body]).must_equal(error_body)
         _(result.error[:status_code]).must_equal(400)
       end
@@ -44,8 +44,8 @@ describe CandyCheck::PlayStore::ProductAcknowledgements::Acknowledgement do
       VCR.use_cassette('play_store/product_acknowledgements/refunded') do
         result = subject.call!
 
-        result.must_be_instance_of CandyCheck::PlayStore::ProductAcknowledgements::Response
-        result.acknowledged?.must_be_false
+        _(result).must_be_instance_of CandyCheck::PlayStore::ProductAcknowledgements::Response
+        _(result.acknowledged?).must_be_false
         _(result.error[:body]).must_equal(error_body)
         _(result.error[:status_code]).must_equal(400)
       end

@@ -73,11 +73,11 @@ describe CandyCheck::AppStore::Receipt do
     end
 
     it 'return nil for cancellation date' do
-      subject.cancellation_date.must_be_nil
+      _(subject.cancellation_date).must_be_nil
     end
 
     it 'returns raw attributes' do
-      subject.attributes.must_be_same_as attributes
+      _(subject.attributes).must_be_same_as attributes
     end
 
     it 'returns the subscription expiration date' do
@@ -86,7 +86,7 @@ describe CandyCheck::AppStore::Receipt do
     end
 
     it 'returns the trial status' do
-      subject.is_trial_period.must_be_false
+      _(subject.is_trial_period).must_be_false
     end
   end
 
@@ -96,7 +96,7 @@ describe CandyCheck::AppStore::Receipt do
     end
 
     it 'isn\'t valid' do
-      subject.valid?.must_be_false
+      _(subject.valid?).must_be_false
     end
 
     it 'return nil for cancellation date' do

@@ -33,7 +33,7 @@ describe CandyCheck::PlayStore::SubscriptionPurchases::SubscriptionPurchase do
     end
 
     it 'checks that auto renewal status is false' do
-      subject.auto_renewing?.must_be_false
+      _(subject.auto_renewing?).must_be_false
     end
 
     it 'returns the developer_payload' do
@@ -79,7 +79,7 @@ describe CandyCheck::PlayStore::SubscriptionPurchases::SubscriptionPurchase do
     end
 
     it 'is expired?' do
-      subject.expired?.must_be_false
+      _(subject.expired?).must_be_false
     end
 
     it 'is two days left until it is overdue' do
@@ -123,15 +123,15 @@ describe CandyCheck::PlayStore::SubscriptionPurchases::SubscriptionPurchase do
       end
 
       it 'is not canceled?' do
-        subject.canceled_by_user?.must_be_false
+        _(subject.canceled_by_user?).must_be_false
       end
 
       it 'returns nil user_cancellation_time_millis' do
-        subject.user_cancellation_time_millis.must_be_nil
+        _(subject.user_cancellation_time_millis).must_be_nil
       end
 
       it 'returns nil canceled_at' do
-        subject.canceled_at.must_be_nil
+        _(subject.canceled_at).must_be_nil
       end
     end
 
